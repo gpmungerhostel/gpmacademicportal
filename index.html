@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPM Academic Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f2744;
+  --navy-mid: #1a3a5c;
+  --navy-light: #2d4f73;
+  --gold: #c89836;
+  --gold-light: #d4a854;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --warning: #c89836;
+  --warning-bg: #fef3c7;
+  --info: #3b82f6;
+  --info-bg: #dbeafe;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(15,39,68,.05);
+  --shadow-md: 0 4px 6px rgba(15,39,68,.08);
+  --shadow-lg: 0 10px 15px rgba(15,39,68,.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: var(--gray-800);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Institute Banner */
+.institute-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  color: var(--white);
+  padding: 24px 32px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: var(--shadow-lg);
+}
+.inst-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.3);
+}
+.inst-info { flex: 1; }
+.inst-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.inst-addr {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+.inst-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  opacity: 0.95;
+}
+
+/* Main Layout */
+.main { max-width: 1200px; margin: 0 auto; }
+.hidden { display: none !important; }
+
+/* Card */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.card-subtitle {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+
+/* Home Cards */
+.home-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.home-emblem { margin-bottom: 14px; }
+.home-emblem img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--navy-light);
+}
+.home-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.home-header p {
+  font-size: 14px;
+  color: var(--gray-600);
+}
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.home-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.home-card:hover {
+  border-color: var(--navy);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.home-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+.home-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.home-card-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.home-card-desc {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+.home-card-arrow {
+  font-size: 28px;
+  color: var(--gray-300);
+  font-weight: 300;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 2px solid var(--gray-200);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+.tab-btn:hover { color: var(--navy); }
+.tab-btn.active {
+  color: var(--navy);
+  border-bottom-color: var(--navy);
+}
+.tab-badge {
+  display: inline-block;
+  background: var(--danger);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+
+/* Form Elements */
+.field {
+  margin-bottom: 16px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--gray-800);
+  background: var(--white);
+  transition: all 0.2s;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(15,39,68,0.1);
+}
+textarea { resize: vertical; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media(max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Buttons */
+.btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+  text-align: center;
+}
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn-secondary {
+  background: var(--gray-200);
+  color: var(--gray-800);
+}
+.btn-secondary:hover { background: var(--gray-300); }
+.btn-success {
+  background: var(--success);
+  color: var(--white);
+}
+.btn-success:hover { background: #059669; }
+.btn-danger {
+  background: var(--danger);
+  color: var(--white);
+}
+.btn-danger:hover { background: #dc2626; }
+.btn-gold {
+  background: var(--gold);
+  color: var(--white);
+}
+.btn-gold:hover { background: var(--gold-light); }
+.btn-full { width: 100%; }
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 12px;
+}
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+/* Alerts */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.alert-info {
+  background: var(--info-bg);
+  color: var(--info);
+  border-left: 3px solid var(--info);
+}
+.alert-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border-left: 3px solid var(--success);
+}
+.alert-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border-left: 3px solid var(--warning);
+}
+.alert-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-left: 3px solid var(--danger);
+}
+
+/* Error Message */
+.err-msg {
+  font-size: 12px;
+  color: var(--danger);
+  margin-top: 5px;
+  font-weight: 500;
+}
+.req { color: var(--danger); }
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.badge-approved {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.badge-rejected {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* Section Heading */
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gray-100);
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.info-row {
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--navy-light);
+}
+.info-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.info-value {
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+.data-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 13px;
+}
+.data-table tr:hover {
+  background: var(--gray-50);
+}
+
+/* Back Link */
+.back-link {
+  background: none;
+  border: none;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+.back-link:hover { color: var(--navy-light); }
+
+/* Login Wrap */
+.login-wrap {
+  max-width: 420px;
+  margin: 40px auto;
+}
+.login-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideIn 0.3s ease;
+  max-width: 350px;
+}
+@keyframes slideIn {
+  from { transform: translateX(400px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Role Badge */
+.role-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.role-student { background: #dbeafe; color: #1e40af; }
+.role-faculty { background: #d1fae5; color: #065f46; }
+.role-hod { background: #fef3c7; color: #92400e; }
+.role-admin { background: #fee2e2; color: #991b1b; }
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 20px 0;
+}
+
+/* Timetable Grid */
+.timetable-grid {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+.timetable-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--navy-mid);
+}
+.timetable-table td {
+  padding: 8px;
+  border: 1px solid var(--gray-200);
+  text-align: center;
+  font-size: 12px;
+  min-height: 50px;
+  vertical-align: top;
+}
+.timetable-table td.recess {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  font-weight: 600;
+  color: var(--warning);
+}
+.timetable-slot {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+  padding: 6px;
+  margin: 2px;
+  font-size: 11px;
+}
+.timetable-slot strong {
+  display: block;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pass-wrapper input {
+  flex: 1;
+  padding-right: 44px !important;
+}
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--gray-400);
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.eye-btn:hover { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- Institute Banner -->
+<div class="institute-banner">
+  <img src="data:image/jpeg;base64,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" alt="GPM Logo" class="inst-logo">
+  <div class="inst-info">
+    <div class="inst-name">Government Polytechnic, Munger</div>
+    <div class="inst-addr">Ramankabad, Haveli Kharagpur, Munger-811213, Bihar</div>
+    <div class="inst-subtitle">📚 ACADEMIC PORTAL</div>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- HOME -->
+<section id="sec-home">
+  <div class="home-header">
+    <div class="home-emblem"><img src="data:image/jpeg;base64,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" alt="GPM"></div>
+    <h1>Academic Portal</h1>
+    <p>Government Polytechnic Munger, Bihar — Centralized Academic Management</p>
+  </div>
+  <div class="home-grid">
+    <div class="home-card" data-role="student">
+      <div class="home-card-left">
+        <div class="home-card-icon" style="background:#eef3ff">🎓</div>
+        <div>
+          <div class="home-card-title">Student Login</div>
+          <div class="home-card-desc">Course registration · Attendance · Marks · Timetable</div>
+        </div>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </div>
+    <div class="home-card" data-role="faculty">
+      <div class="home-card-left">
+        <div class="home-card-icon" style="background:#eaf5ef">👨‍🏫</div>
+        <div>
+          <div class="home-card-title">Faculty Login</div>
+          <div class="home-card-desc">Mark attendance · Enter marks · Upload notes</div>
+        </div>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </div>
+    <div class="home-card" data-role="hod">
+      <div class="home-card-left">
+        <div class="home-card-icon" style="background:#fef3c7">🏢</div>
+        <div>
+          <div class="home-card-title">HOD Login</div>
+          <div class="home-card-desc">Monitor department · Faculty reports · Grievances</div>
+        </div>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </div>
+    <div class="home-card" data-role="admin">
+      <div class="home-card-left">
+        <div class="home-card-icon" style="background:#e8f3ff">🔐</div>
+        <div>
+          <div class="home-card-title">Academic In-Charge</div>
+          <div class="home-card-desc">Manage courses · Timetable · Faculty · Students · Notices</div>
+        </div>
+      </div>
+      <div class="home-card-arrow">›</div>
+    </div>
+  </div>
+</section>
+
+<!-- Student Portal -->
+<section id="sec-student" class="hidden">
+  <div id="student-auth" class="card login-wrap">
+    <div class="login-header">
+      <div style="font-size:40px;margin-bottom:10px">🎓</div>
+      <div class="card-title">Student Login</div>
+      <div class="card-subtitle">Access your academic portal</div>
+    </div>
+    <div class="field">
+      <label>Roll Number <span class="req">*</span></label>
+      <input type="text" id="student-roll" placeholder="e.g., 25/CSE/2026">
+    </div>
+    <div class="field">
+      <label>Password <span class="req">*</span></label>
+      <div class="pass-wrapper">
+        <input type="password" id="student-pass" placeholder="Enter password">
+        <button class="eye-btn" id="toggle-student-pass" type="button" onclick="togglePass('student-pass','toggle-student-pass')" title="Show/hide password">👁️</button>
+      </div>
+    </div>
+    <div class="err-msg hidden" id="err-student-login"></div>
+    <button class="btn btn-primary btn-full" id="btn-student-login">Login</button>
+    <div style="text-align:center;margin-top:14px">
+      <button class="back-link">← Return to Home</button>
+    </div>
+  </div>
+
+  <div id="student-dashboard" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy)">Student Dashboard</div>
+        <div style="font-size:13px;color:var(--gray-600)" id="student-name-display"></div>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="btn-student-logout">Logout</button>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab-btn active">Profile</button>
+        <button class="tab-btn">Courses</button>
+        <button class="tab-btn">Timetable</button>
+        <button class="tab-btn">Attendance</button>
+        <button class="tab-btn">Marks</button>
+        <button class="tab-btn">Notices</button>
+      </div>
+
+      <div id="student-tab-profile">
+        <div class="section-heading">Personal Information</div>
+        <div class="info-grid" id="student-info-grid"></div>
+      </div>
+
+      <div id="student-tab-courses" class="hidden">
+        <div class="section-heading">Registered Courses</div>
+        <div id="student-courses-list"></div>
+      </div>
+
+      <div id="student-tab-timetable" class="hidden">
+        <div class="section-heading">Class Timetable</div>
+        <div id="student-timetable"></div>
+      </div>
+
+      <div id="student-tab-attendance" class="hidden">
+        <div class="section-heading">Attendance Summary</div>
+        <div id="student-attendance"></div>
+      </div>
+
+      <div id="student-tab-marks" class="hidden">
+        <div class="section-heading">Internal Marks</div>
+        <div id="student-marks"></div>
+      </div>
+
+      <div id="student-tab-notices" class="hidden">
+        <div class="section-heading">Notice Board</div>
+        <div id="student-notices"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Faculty Portal -->
+<section id="sec-faculty" class="hidden">
+  <div id="faculty-auth" class="card login-wrap">
+    <div class="login-header">
+      <div style="font-size:40px;margin-bottom:10px">👨‍🏫</div>
+      <div class="card-title">Faculty Login</div>
+      <div class="card-subtitle">Access faculty portal</div>
+    </div>
+    <div class="field">
+      <label>Faculty ID <span class="req">*</span></label>
+      <input type="text" id="faculty-id" placeholder="Enter faculty ID">
+    </div>
+    <div class="field">
+      <label>Password <span class="req">*</span></label>
+      <div class="pass-wrapper">
+        <input type="password" id="faculty-pass" placeholder="Enter password">
+        <button class="eye-btn" id="toggle-faculty-pass" type="button" onclick="togglePass('faculty-pass','toggle-faculty-pass')" title="Show/hide password">👁️</button>
+      </div>
+    </div>
+    <div class="err-msg hidden" id="err-faculty-login"></div>
+    <button class="btn btn-primary btn-full" id="btn-faculty-login">Login</button>
+    <div style="text-align:center;margin-top:14px">
+      <button class="back-link">← Return to Home</button>
+    </div>
+  </div>
+
+  <div id="faculty-dashboard" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy)">Faculty Dashboard</div>
+        <div style="font-size:13px;color:var(--gray-600)" id="faculty-name-display"></div>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="btn-faculty-logout">Logout</button>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab-btn active">Profile</button>
+        <button class="tab-btn">My Courses</button>
+        <button class="tab-btn">Attendance</button>
+        <button class="tab-btn">Marks Entry</button>
+        <button class="tab-btn">Notes</button>
+      </div>
+
+      <div id="faculty-tab-profile">
+        <div class="section-heading">Faculty Information</div>
+        <div class="info-grid" id="faculty-info-grid"></div>
+      </div>
+
+      <div id="faculty-tab-courses" class="hidden">
+        <div class="section-heading">Assigned Courses</div>
+        <div id="faculty-courses-list"></div>
+      </div>
+
+      <div id="faculty-tab-attendance" class="hidden">
+        <div class="section-heading">Mark Attendance</div>
+        <div id="faculty-attendance"></div>
+      </div>
+
+      <div id="faculty-tab-marks" class="hidden">
+        <div class="section-heading">Enter Internal Marks</div>
+        <div id="faculty-marks"></div>
+      </div>
+
+      <div id="faculty-tab-notes" class="hidden">
+        <div class="section-heading">Upload Course Notes</div>
+        <div id="faculty-notes"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOD Portal -->
+<section id="sec-hod" class="hidden">
+  <div id="hod-auth" class="card login-wrap">
+    <div class="login-header">
+      <div style="font-size:40px;margin-bottom:10px">🏢</div>
+      <div class="card-title">HOD Login</div>
+      <div class="card-subtitle">Department head portal</div>
+    </div>
+    <div class="field">
+      <label>HOD ID <span class="req">*</span></label>
+      <input type="text" id="hod-id" placeholder="Enter HOD ID">
+    </div>
+    <div class="field">
+      <label>Password <span class="req">*</span></label>
+      <div class="pass-wrapper">
+        <input type="password" id="hod-pass" placeholder="Enter password">
+        <button class="eye-btn" id="toggle-hod-pass" type="button" onclick="togglePass('hod-pass','toggle-hod-pass')" title="Show/hide password">👁️</button>
+      </div>
+    </div>
+    <div class="err-msg hidden" id="err-hod-login"></div>
+    <button class="btn btn-primary btn-full" id="btn-hod-login">Login</button>
+    <div style="text-align:center;margin-top:14px">
+      <button class="back-link">← Return to Home</button>
+    </div>
+  </div>
+
+  <div id="hod-dashboard" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy)">HOD Dashboard</div>
+        <div style="font-size:13px;color:var(--gray-600)" id="hod-name-display"></div>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="btn-hod-logout">Logout</button>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab-btn active">Students</button>
+        <button class="tab-btn">Faculty</button>
+        <button class="tab-btn">Attendance</button>
+        <button class="tab-btn">Reports</button>
+      </div>
+
+      <div id="hod-tab-students">
+        <div class="section-heading">Department Students</div>
+        <div id="hod-students"></div>
+      </div>
+
+      <div id="hod-tab-faculty" class="hidden">
+        <div class="section-heading">Department Faculty</div>
+        <div id="hod-faculty"></div>
+      </div>
+
+      <div id="hod-tab-attendance" class="hidden">
+        <div class="section-heading">Attendance Overview</div>
+        <div id="hod-attendance"></div>
+      </div>
+
+      <div id="hod-tab-reports" class="hidden">
+        <div class="section-heading">Department Reports</div>
+        <div id="hod-reports"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Academic In-Charge Portal -->
+<section id="sec-admin" class="hidden">
+  <div id="admin-auth" class="card login-wrap">
+    <div class="login-header">
+      <div style="font-size:40px;margin-bottom:10px">🔐</div>
+      <div class="card-title">Academic In-Charge Login</div>
+      <div class="card-subtitle">Complete academic control</div>
+    </div>
+    <div class="field">
+      <label>Admin ID <span class="req">*</span></label>
+      <input type="text" id="admin-id" placeholder="Enter admin ID">
+    </div>
+    <div class="field">
+      <label>Password <span class="req">*</span></label>
+      <div class="pass-wrapper">
+        <input type="password" id="admin-pass" placeholder="Enter password">
+        <button class="eye-btn" id="toggle-admin-pass" type="button" onclick="togglePass('admin-pass','toggle-admin-pass')" title="Show/hide password">👁️</button>
+      </div>
+    </div>
+    <div class="err-msg hidden" id="err-admin-login"></div>
+    <button class="btn btn-primary btn-full" id="btn-admin-login">Login</button>
+    <div style="text-align:center;margin-top:14px">
+      <button class="back-link">← Return to Home</button>
+    </div>
+  </div>
+
+  <div id="admin-dashboard" class="hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy)">Academic In-Charge Dashboard</div>
+        <div style="font-size:13px;color:var(--gray-600)">Complete Academic Control</div>
+      </div>
+      <button class="btn btn-secondary btn-sm" id="btn-admin-logout">Logout</button>
+    </div>
+
+    <div class="card">
+      <div class="tabs">
+        <button class="tab-btn active">Courses</button>
+        <button class="tab-btn">Timetable</button>
+        <button class="tab-btn">Faculty</button>
+        <button class="tab-btn">Students</button>
+        <button class="tab-btn">Notices</button>
+      </div>
+
+      <div id="admin-tab-courses">
+        <div class="section-heading">Course Master</div>
+        <div id="admin-courses"></div>
+      </div>
+
+      <div id="admin-tab-timetable" class="hidden">
+        <div class="section-heading">Timetable Management</div>
+        <div id="admin-timetable"></div>
+      </div>
+
+      <div id="admin-tab-faculty" class="hidden">
+        <div class="section-heading">Faculty Management</div>
+        <div id="admin-faculty"></div>
+      </div>
+
+      <div id="admin-tab-students" class="hidden">
+        <div class="section-heading">Student Management</div>
+        <div id="admin-students"></div>
+      </div>
+
+      <div id="admin-tab-notices" class="hidden">
+        <div class="section-heading">Notice Board</div>
+        <div id="admin-notices"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="toast"></div>
+
+<script>
+// Google Apps Script Web App URL - REPLACE WITH YOUR DEPLOYED URL
+const API_URL = 'https://script.google.com/macros/s/AKfycbwuXpl5dsIAHR_OwfhR007_FyPRBUYwG0rDNlFwbTQv9VZ0Q6_H8RMUWM3ypkPCKOuWZQ/exec';
+
+let currentUser = null;
+let currentRole = null;
+
+// Utility Functions
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => { toast.style.display = 'none'; }, 3000);
+}
+
+function showError(elemId, msg) {
+  const el = document.getElementById(elemId);
+  if(el) {
+    el.textContent = msg;
+    el.classList.remove('hidden');
+  }
+}
+
+function hideError(elemId) {
+  const el = document.getElementById(elemId);
+  if(el) el.classList.add('hidden');
+}
+
+function showSection(sectionId) {
+  document.querySelectorAll('.main > section').forEach(s => s.classList.add('hidden'));
+  const sec = document.getElementById(sectionId);
+  if(sec) sec.classList.remove('hidden');
+}
+
+async function apiCall(action, data = {}) {
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action, ...data }),
+      redirect: 'follow'
+    });
+    const json = await res.json();
+    return json;
+  } catch(e) {
+    console.error('API Error:', e);
+    return { success: false, error: 'Network error: ' + e.message };
+  }
+}
+
+// Tab Switching
+function initTabs(container) {
+  const tabs = container.querySelectorAll('.tab-btn');
+  const tabContents = container.querySelectorAll('[id*="-tab-"]');
+  
+  tabs.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tabContents.forEach(c => c.classList.add('hidden'));
+      btn.classList.add('active');
+      if(tabContents[i]) tabContents[i].classList.remove('hidden');
+    });
+  });
+}
+
+// Initialize tabs for all sections
+window.addEventListener('load', () => {
+  document.querySelectorAll('.tabs').forEach(container => {
+    const parent = container.closest('.card');
+    if(parent) initTabs(parent);
+  });
+});
+
+// Home Screen
+document.querySelectorAll('.home-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const role = card.dataset.role;
+    showSection('sec-' + role);
+  });
+});
+
+// Back to Home
+document.querySelectorAll('.back-link').forEach(btn => {
+  btn.addEventListener('click', () => {
+    showSection('sec-home');
+    currentUser = null;
+    currentRole = null;
+  });
+});
+
+// Student Login
+document.getElementById('btn-student-login').addEventListener('click', async () => {
+  const roll = document.getElementById('student-roll').value.trim();
+  const pass = document.getElementById('student-pass').value;
+  hideError('err-student-login');
+  
+  if(!roll || !pass) {
+    showError('err-student-login', 'Roll number and password required');
+    return;
+  }
+  
+  const result = await apiCall('studentLogin', { roll, password: pass });
+  if(result.success) {
+    currentUser = result.student;
+    currentRole = 'student';
+    showStudentDashboard();
+  } else {
+    showError('err-student-login', result.error || 'Login failed');
+  }
+});
+
+function showStudentDashboard() {
+  document.getElementById('student-auth').classList.add('hidden');
+  document.getElementById('student-dashboard').classList.remove('hidden');
+  document.getElementById('student-name-display').textContent = currentUser.name + ' (Roll: ' + currentUser.roll + ')';
+  
+  // Load student data
+  loadStudentProfile();
+}
+
+function loadStudentProfile() {
+  const grid = document.getElementById('student-info-grid');
+  grid.innerHTML = `
+    <div class="info-row"><div class="info-label">Name</div><div class="info-value">${currentUser.name}</div></div>
+    <div class="info-row"><div class="info-label">Roll Number</div><div class="info-value">${currentUser.roll}</div></div>
+    <div class="info-row"><div class="info-label">Branch</div><div class="info-value">${currentUser.branch}</div></div>
+    <div class="info-row"><div class="info-label">Semester</div><div class="info-value">${currentUser.semester}</div></div>
+    <div class="info-row"><div class="info-label">Email</div><div class="info-value">${currentUser.email}</div></div>
+    <div class="info-row"><div class="info-label">Mobile</div><div class="info-value">${currentUser.mobile}</div></div>
+  `;
+}
+
+// Faculty Login
+document.getElementById('btn-faculty-login').addEventListener('click', async () => {
+  const id = document.getElementById('faculty-id').value.trim();
+  const pass = document.getElementById('faculty-pass').value;
+  hideError('err-faculty-login');
+  
+  if(!id || !pass) {
+    showError('err-faculty-login', 'Faculty ID and password required');
+    return;
+  }
+  
+  const result = await apiCall('facultyLogin', { facultyId: id, password: pass });
+  if(result.success) {
+    currentUser = result.faculty;
+    currentRole = 'faculty';
+    showFacultyDashboard();
+  } else {
+    showError('err-faculty-login', result.error || 'Login failed');
+  }
+});
+
+function showFacultyDashboard() {
+  document.getElementById('faculty-auth').classList.add('hidden');
+  document.getElementById('faculty-dashboard').classList.remove('hidden');
+  document.getElementById('faculty-name-display').textContent = currentUser.name + ' (' + currentUser.department + ')';
+  loadFacultyProfile();
+}
+
+function loadFacultyProfile() {
+  const grid = document.getElementById('faculty-info-grid');
+  grid.innerHTML = `
+    <div class="info-row"><div class="info-label">Name</div><div class="info-value">${currentUser.name}</div></div>
+    <div class="info-row"><div class="info-label">Faculty ID</div><div class="info-value">${currentUser.facultyId}</div></div>
+    <div class="info-row"><div class="info-label">Department</div><div class="info-value">${currentUser.department}</div></div>
+    <div class="info-row"><div class="info-label">Designation</div><div class="info-value">${currentUser.designation}</div></div>
+    <div class="info-row"><div class="info-label">Email</div><div class="info-value">${currentUser.email}</div></div>
+    <div class="info-row"><div class="info-label">Mobile</div><div class="info-value">${currentUser.mobile}</div></div>
+  `;
+}
+
+// HOD Login
+document.getElementById('btn-hod-login').addEventListener('click', async () => {
+  const id = document.getElementById('hod-id').value.trim();
+  const pass = document.getElementById('hod-pass').value;
+  hideError('err-hod-login');
+  
+  if(!id || !pass) {
+    showError('err-hod-login', 'HOD ID and password required');
+    return;
+  }
+  
+  const result = await apiCall('hodLogin', { hodId: id, password: pass });
+  if(result.success) {
+    currentUser = result.hod;
+    currentRole = 'hod';
+    showHodDashboard();
+  } else {
+    showError('err-hod-login', result.error || 'Login failed');
+  }
+});
+
+function showHodDashboard() {
+  document.getElementById('hod-auth').classList.add('hidden');
+  document.getElementById('hod-dashboard').classList.remove('hidden');
+  document.getElementById('hod-name-display').textContent = currentUser.name + ' - HOD, ' + currentUser.department;
+}
+
+// Admin Login
+document.getElementById('btn-admin-login').addEventListener('click', async () => {
+  const id = document.getElementById('admin-id').value.trim();
+  const pass = document.getElementById('admin-pass').value;
+  hideError('err-admin-login');
+  
+  if(!id || !pass) {
+    showError('err-admin-login', 'Admin ID and password required');
+    return;
+  }
+  
+  const result = await apiCall('adminLogin', { adminId: id, password: pass });
+  if(result.success) {
+    currentUser = result.admin;
+    currentRole = 'admin';
+    showAdminDashboard();
+  } else {
+    showError('err-admin-login', result.error || 'Login failed');
+  }
+});
+
+function showAdminDashboard() {
+  document.getElementById('admin-auth').classList.add('hidden');
+  document.getElementById('admin-dashboard').classList.remove('hidden');
+}
+
+// Logout Buttons
+document.getElementById('btn-student-logout').addEventListener('click', () => {
+  document.getElementById('student-dashboard').classList.add('hidden');
+  document.getElementById('student-auth').classList.remove('hidden');
+  document.getElementById('student-roll').value = '';
+  document.getElementById('student-pass').value = '';
+  currentUser = null;
+  currentRole = null;
+});
+
+document.getElementById('btn-faculty-logout').addEventListener('click', () => {
+  document.getElementById('faculty-dashboard').classList.add('hidden');
+  document.getElementById('faculty-auth').classList.remove('hidden');
+  document.getElementById('faculty-id').value = '';
+  document.getElementById('faculty-pass').value = '';
+  currentUser = null;
+  currentRole = null;
+});
+
+document.getElementById('btn-hod-logout').addEventListener('click', () => {
+  document.getElementById('hod-dashboard').classList.add('hidden');
+  document.getElementById('hod-auth').classList.remove('hidden');
+  document.getElementById('hod-id').value = '';
+  document.getElementById('hod-pass').value = '';
+  currentUser = null;
+  currentRole = null;
+});
+
+document.getElementById('btn-admin-logout').addEventListener('click', () => {
+  document.getElementById('admin-dashboard').classList.add('hidden');
+  document.getElementById('admin-auth').classList.remove('hidden');
+  document.getElementById('admin-id').value = '';
+  document.getElementById('admin-pass').value = '';
+  currentUser = null;
+  currentRole = null;
+});
+
+
+function togglePass(inputId, btnId) {
+  const inp = document.getElementById(inputId);
+  const btn = document.getElementById(btnId);
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    inp.type = 'password';
+    btn.textContent = '👁️';
+  }
+}
+</script>
+</body>
+</html>
